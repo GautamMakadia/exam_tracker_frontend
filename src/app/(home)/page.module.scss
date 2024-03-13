@@ -1,0 +1,7 @@
+.container {
+    @apply flex flex-col items-center justify-center h-full;
+    @apply outline outline-1 rounded-md;
+    outline-color: var(--color-outline);
+
+    background-color: var(--color-primary-container);
+}

@@ -1,0 +1,53 @@
+.navigation_pan {
+    @apply flex items-center flex-col;
+
+    .nav_head {
+        @apply text-3xl mx-8 my-14 font-bold;
+    }
+
+    .list_container{
+        list-style: none;
+        @apply w-full h-full rounded transition-all; 
+        outline-color: var(--color-outline);
+        
+        .nav_action {
+            color: var(--color-primary);
+            @apply outline transition-colors rounded-r-full outline-1 text-xl font-medium mt-6 mr-6;
+            outline-color: var(--color-secondary);
+    
+            cursor: pointer;
+            &:hover {
+                background-color: var(--tertiary-container);
+            }
+        }
+
+        .nav_action.nav_active {
+            @apply transition-all outline-2 font-semibold mr-2;
+            outline-color: var(--color-secondary);
+            background-color: var(--tertiary-container);
+        }
+    }
+
+    .bottom_menu {
+        @apply  flex flex-col justify-center p-6 w-full;
+
+        span {
+            color: var(--color-secondary);
+        }
+
+        .nav_logout {
+            @apply my-1 h-9 text-xl font-semibold outline outline-2 rounded-full w-full;
+            color: var(--color-primary);
+
+            cursor: pointer;
+            &:hover {
+                background-color: var(--tertiary-container);
+            }
+        }
+    }
+}
+
+
+
+
+

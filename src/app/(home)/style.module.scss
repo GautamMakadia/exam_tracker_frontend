@@ -1,0 +1,23 @@
+.root {
+    margin: 0;
+    padding: 0;
+    @apply max-h-screen;
+
+    @apply flex flex-row flex-grow h-screen max-h-screen;
+    background-color: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+
+
+    .navigation { 
+        background-color: var(--color-secondary-container); 
+    }
+
+    .content_main {
+        @apply  transition-all p-4 h-full flex-1;
+        // @apply outline  outline-1;
+        outline-color: var(--color-outline);
+        background-color: var(--color-secondary-container);
+    }
+}
+
+
