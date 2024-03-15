@@ -5,6 +5,7 @@ import styles from "./style.module.scss"
 import { uploadExcelFile } from "./_action";
 import { getActiveCollection } from "@/lib/data";
 import { useEffect, useState } from "react";
+import RecordsView from "@/components/record_table/record_view";
 
 
 export default function Upload() {
@@ -58,42 +59,7 @@ export default function Upload() {
 
                     {
                         ( pending ? <span>Uploading Records</span> : (state.error) ? <span>Somthing Went Wrong</span> : ((state.seating_list != null) ?
-                        <>
-                        <div className={styles.table_container}>
-                            <div className={styles.table_header}>
-                                <div>Enroll. No.</div>
-                                <div>Name</div>
-                                <div>Department</div>
-                                <div>Semester</div>
-                                <div>Block No.</div>
-                                <div>Room No.</div>
-                                <div>Bench No.</div>
-                                <div>Bench Side</div>
-                            </div>
-                            <div className={styles.table_content}>
-                                {
-                                    state.seating_list.map((a, index) => {
-                                        const pos = (index%2 == 0) ? styles.even : styles.odd
-                                        
-                                        return (
-                                            <>
-                                                <div className={`${styles.row} ${pos}`}>
-                                                    <div>{a.enrollmentNo}</div>
-                                                    <div>{a.name}</div>
-                                                    <div>{a.department}</div>
-                                                    <div>{a.semester}</div>
-                                                    <div>{a.block}</div>
-                                                    <div>{a.room}</div>
-                                                    <div>{a.benchNo}</div>
-                                                    <div>{a.benchSide}</div>
-                                                </div>
-                                            </>
-                                        )
-                                    })
-                                }
-                            </div>
-                        </div> 
-                        </> : <span>Uploaded Records Will Be Displayed Here</span> ) )
+                        <RecordsView records={state.seating_list}/> : <span>Uploaded Records Will Be Displayed Here</span> ) )
                     }
                 </div>
         </div>
