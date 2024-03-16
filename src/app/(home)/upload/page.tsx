@@ -21,6 +21,10 @@ export default function Upload() {
         setActiveCollection(name)
     })
 
+    if (state.seating_list != null) {
+
+    }
+
     return (
         <>
         <div className={styles.upload_container}>
@@ -32,7 +36,7 @@ export default function Upload() {
                 <form className={styles.form} action={uploadAction} >
                     <div className={styles.form_group}>
                         <label htmlFor="exam-name">Exam Name: </label>
-                        <select name="exam_name" id="exam-name" className={styles.selection}>
+                        <select name="exam_name" id="exam-name" className={styles.selection} required>
                             <option value="CIA-1">CIA-1</option>
                             <option value="CIA-2">CIA-2</option>
                         </select> 
@@ -40,18 +44,17 @@ export default function Upload() {
                     
                     <div className={styles.form_group}>
                         <label htmlFor="exam-term">Exam Term: </label>
-                        <input type="month" name="term" id="exam-term" />
+                        <input type="month" name="term" id="exam-term" required/>
                     </div>
 
                     <div className={styles.form_group}>
                         <label htmlFor="exam-term">Seating Records: </label>
-                        <input type="file" name="xl_sheet" id="file" />
-                        
+                        <input type="file" name="xl_sheet" id="file" required/>
                     </div>
 
 
                     <div className={styles.form_group}>
-                        <SubmitButton/>
+                        <SubmitButton sucess={state.seating_list == null}/>
                     </div>
                     
                 </form>
@@ -59,7 +62,7 @@ export default function Upload() {
 
                     {
                         ( pending ? <span>Uploading Records</span> : (state.error) ? <span>Somthing Went Wrong</span> : ((state.seating_list != null) ?
-                        <RecordsView records={state.seating_list}/> : <span>Uploaded Records Will Be Displayed Here</span> ) )
+                        <RecordsView records={state.seating_list} styles={styles}/> : <span>Uploaded Records Will Be Displayed Here</span> ) )
                     }
                 </div>
         </div>
@@ -67,11 +70,11 @@ export default function Upload() {
     )
 }
 
-function SubmitButton() {
+function SubmitButton({sucess}: {sucess:boolean}) {
     const { pending } = useFormStatus()
 
     return (
-        <button type="submit" value="Submit" name="Submit" className={styles.submit} >
+        <button type="submit" value="Submit" name="Submit" className={styles.submit} disabled={!sucess}>
             { pending ? "Submitting..." : "Submit" }
         </button>
     )

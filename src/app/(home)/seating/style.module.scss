@@ -5,6 +5,27 @@
         @apply  flex flex-row text-lg font-medium outline outline-2 items-center rounded-lg drop-shadow-md w-full mb-3 p-4 h-16;
         outline-color: var(--color-secondary);
         background-color: var(--tertiary-container);
+
+        .title {
+            
+        }
+
+        .loading, .error {
+            @apply mx-1;
+            color: var(--color-secondary);
+        }
+
+        .ref_selection {
+            @apply py-1 rounded-md  mx-2 font-semibold text-lg;
+            color: var(--color-secondary);
+            background-color: inherit;
+
+            option {
+                @apply my-3;
+                background-color: var(--color-primary-container);
+
+            }
+        }
     }
 
     .record_container {
@@ -14,47 +35,47 @@
         border-color: var(--color-primary-container);
 
 
-        // .table_container {
-        //     @apply rounded-xl  w-full;
+        .table_container {
+            @apply rounded-xl  w-full;
             
-        //     color: var(--color-secondary);
+            color: var(--color-secondary);
 
-        //     .table_header {
-        //         @apply grid rounded-lg justify-stretch text-center outline outline-2 mb-2;
-        //         color: var(--color-primary);
-        //         display: grid;
-        //         grid-template-columns: 1fr 2.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
-        //         outline-color: var(--color-secondary);
-        //         background-color: var(--tertiary-container);
+            .table_header {
+                @apply grid rounded-lg justify-stretch text-center outline outline-2 mb-2;
+                color: var(--color-primary);
+                display: grid;
+                grid-template-columns: 1fr 2.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
+                outline-color: var(--color-secondary);
+                background-color: var(--tertiary-container);
                 
-        //         div {
-        //             @apply text-xl font-semibold p-3;
-        //         }
-        //     }
+                div {
+                    @apply text-xl font-semibold p-3;
+                }
+            }
     
-        //     .table_content {
-        //         @apply overflow-y-scroll scroll-smooth rounded-lg;
-        //         height: calc(100vh - 180px);
+            .table_content {
+                @apply overflow-y-scroll scroll-smooth rounded-lg;
+                height: calc(100vh - 180px);
 
-        //         .row {
-        //             display: grid;
-        //             grid-template-columns: 1fr 2.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
-        //             @apply text-lg font-medium p-2 rounded-lg;
-        //             text-align: center;
+                .row {
+                    display: grid;
+                    grid-template-columns: 1fr 2.5fr 2fr 1fr 1fr 1fr 1fr 1fr;
+                    @apply text-lg font-medium p-2 rounded-lg;
+                    text-align: center;
 
 
-        //             &.odd {
-        //                 background-color: var(--tertiary-container);
-        //                 color: var(--color-primary);
-        //             }
+                    &.odd {
+                        background-color: var(--tertiary-container);
+                        color: var(--color-primary);
+                    }
         
-        //             &.even {
+                    &.even {
                     
-        //             }
-        //         }
-        //     }
+                    }
+                }
+            }
             
-        // }        
+        }        
     }
 }
 

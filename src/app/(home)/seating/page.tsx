@@ -13,8 +13,8 @@ const fetcher = (url: string) => fetch(url, {
 
 export default function Seating() {
     const { data, error, isLoading } = useSWR('http://localhost:8000/collections', fetcher)
-    const [ option, setOption] = useState<string>("")
-    const [ records , setRecords] = useState<any>()
+    const [option, setOption] = useState<string>("")
+    const [records, setRecords] = useState<any>()
 
 
     useEffect(() => {
@@ -55,13 +55,13 @@ export default function Seating() {
     return (
         <div className={styles.container}>
             <div className={styles.head}>
-                <h1 className={styles.title}>Exam Seating Records</h1>
+                <h1 className={styles.title}>Exam Seating Records:</h1>
                 {   isLoading ? <span className={styles.loading}>Please wait...</span> : (
-                        (error) ? <span>Somthing went wrong</span> :
+                    (error) ? <span className={styles.error}>Somthing went wrong</span> :
                         ((isCollectionEmpty) ? <span className={styles.error}>data not found</span> : (
                             <select name="records" id="records" onChange={handelChnage} className={styles.ref_selection} defaultValue="choose">
-                                <option value="choose" disabled selected>Choose here</option>
-                                { collection.map((val) => { return <option value={val} key={val}>{val}</option> })}
+                                <option value="choose" disabled selected>Exam Name</option>
+                                {collection.map((val) => { return <option value={val} key={val}>{val}</option> })}
                             </select>
                         )
                         )
@@ -71,16 +71,15 @@ export default function Seating() {
 
             <div className={styles.record_container}>
 
-                {   isLoading ? <span>Please wait...</span> : (
-                        error ? <span>Somthing Went Wrong</span> : (
-                            (isCollectionEmpty) ? <span>No Data Found</span> : (
-                                records ? (<RecordsView records={records}/>) : 
-                                <span>Select Exam From Above</span> 
-                            )
+                {   isLoading ? <span className={styles.loading}>Please wait...</span> : (
+                    error ? <span className={styles.error}>Somthing Went Wrong</span> : (
+                        (isCollectionEmpty) ? <span className={styles.not_found}>No Data Found</span> : (
+                            records ? (<RecordsView records={records} styles={styles} />) :
+                            <span>Select Exam From Above</span>
                         )
                     )
+                    )
                 }
-
             </div>
         </div>
 

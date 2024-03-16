@@ -2,11 +2,24 @@
 export const getActiveCollection = async () => {
 
     try {
-        const res = await fetch('http://localhost:8000/active-collection')
-        return await res.json()
+        let res = await fetch('http://localhost:8000/active-collectio', {
+            cache: "no-cache"
+        })
         
+        if (!res.ok) {
+            throw "somthing went wrong"
+        }
+
+        const data =  await res.json()
+        
+        return data
+
     } catch (err) {
-        alert("sonthing went wrong please try again later. or check the system")
+        console.log(err)
+        console.log(err)
+        return {
+            error: err
+        }
     }
 } 
 
