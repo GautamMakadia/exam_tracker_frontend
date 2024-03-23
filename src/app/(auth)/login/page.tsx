@@ -1,9 +1,9 @@
 'use client'
 
-import { authenticate } from "@/lib/authentication"
 import { useFormState, useFormStatus } from "react-dom"
 import styles from "./login.module.scss"
 import { useRouter } from "next/navigation"
+import { authenticate } from "./_action"
 
 
 const initialState = {

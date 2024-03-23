@@ -1,12 +1,9 @@
 "use server"
 
-import { browserSessionPersistence, signInWithEmailAndPassword, User } from "firebase/auth";
-import { RedirectType, redirect } from "next/navigation";
-import { setPersistence } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { setCookie } from "cookies-next";
 import { cookies } from "next/headers";
-
 
 
 export async function authenticate(
@@ -26,13 +23,12 @@ export async function authenticate(
             console.log(user.uid)
             setCookie('user', user.uid, {cookies: cookies, maxAge: 60 * 60 * 12})
             return {
-                message: "login seccessfull",
+                message: "login successfull",
                 uid: user.uid
             }
 
         } else {
-            const error = Error("Somthing went wrong, Please try again later.") 
-            error.name = "Firebase Auth Api/SDK Error."
+            const error = Error("Firebase Auth Api/SDK Error.") 
 
             throw error
         }    
