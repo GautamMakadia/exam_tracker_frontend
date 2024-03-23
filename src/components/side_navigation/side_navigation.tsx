@@ -3,8 +3,6 @@
 import Link from "next/link"
 import styles from "./style.module.scss"
 import { usePathname, useRouter } from "next/navigation"
-import { MouseEvent, MouseEventHandler, useEffect, useState } from "react"
-import { getActiveCollection } from "@/lib/data"
 
 type MenuItem =  {
     id: string
@@ -62,7 +60,6 @@ function Logout({text="", className="" }: LogoutButtonProps) {
     const router = useRouter()
 
     const logout = async () => {
-
         
         const logout_res = await fetch("/user", {
             method: "delete",
