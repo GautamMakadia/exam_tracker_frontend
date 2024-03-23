@@ -1,10 +1,10 @@
 'use client'
 
-import { getCookie } from 'cookies-next'
 import styles from './style.module.scss'
 import { ChangeEvent, useEffect, useState } from 'react'
-import useSWR from 'swr'
 import RecordsView from '@/components/record_table/record_view'
+import { api } from '@/lib/url'
+import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url, {
     credentials: "include",
@@ -12,7 +12,7 @@ const fetcher = (url: string) => fetch(url, {
 }).then(r => r.json())
 
 export default function Seating() {
-    const { data, error, isLoading } = useSWR('http://localhost:8000/collections', fetcher)
+    const { data, error, isLoading } = useSWR(api("/collections"), fetcher)
     const [option, setOption] = useState<string>("")
     const [records, setRecords] = useState<any>()
 
@@ -20,7 +20,7 @@ export default function Seating() {
     useEffect(() => {
         if (option != "") {
             setRecords(undefined)
-            fetch(`http://localhost:8000/records/${option}`, {
+            fetch(api(`/records/${option}`), {
                 credentials: "include",
                 mode: "cors",
             }
@@ -29,12 +29,8 @@ export default function Seating() {
     }, [option])
 
     let isCollectionEmpty = true
-    let isRecordEmpty = true
     let collection: string[] = []
 
-    const table = () => <>
-
-    </>
 
     if (data) {
         collection = data.ref
@@ -43,7 +39,6 @@ export default function Seating() {
 
     if (records) {
         isCollectionEmpty = false
-        console.log(records)
     }
 
 
@@ -57,8 +52,8 @@ export default function Seating() {
             <div className={styles.head}>
                 <h1 className={styles.title}>Exam Seating Records:</h1>
                 {   isLoading ? <span className={styles.loading}>Please wait...</span> : (
-                    (error) ? <span className={styles.error}>Somthing went wrong</span> :
-                        ((isCollectionEmpty) ? <span className={styles.error}>data not found</span> : (
+                    (error) ? <span className={styles.error}>{"backend service is not responding"}</span> :
+                        ((isCollectionEmpty) ? <span className={styles.error}>Data Not Found</span> : (
                             <select name="records" id="records" onChange={handelChnage} className={styles.ref_selection} defaultValue="choose">
                                 <option value="choose" disabled selected>Exam Name</option>
                                 {collection.map((val) => { return <option value={val} key={val}>{val}</option> })}
@@ -75,7 +70,7 @@ export default function Seating() {
                     error ? <span className={styles.error}>Somthing Went Wrong</span> : (
                         (isCollectionEmpty) ? <span className={styles.not_found}>No Data Found</span> : (
                             records ? (<RecordsView records={records} styles={styles} />) :
-                            <span>Select Exam From Above</span>
+                            <span>Please Select Exam Name From Above To Fetch Records</span>
                         )
                     )
                     )

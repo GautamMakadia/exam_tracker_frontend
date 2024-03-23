@@ -6,12 +6,15 @@ export async function uploadExcelFile(
 ) {
    
     try {
-        const res = await fetch("http://localhost:8000/records", {
+        const res = await fetch(`http://localhost:8000/records`, {
             method: "post",
             body: formData
         })
-
         const data = await res.json()
+
+        if (res.status == 406) {
+            return { msg: data.detail , seating_list: null, error: "unprocessable" }
+        }
 
         let seating: any[] = [] 
 
@@ -19,10 +22,9 @@ export async function uploadExcelFile(
             seating.push(...Object.values(data['seating_list'][k]))
         })
 
-        return {msg: "succesfull", seating_list: seating }
+        return { msg: "succesfull", seating_list: seating }
     } catch(e) {
-        
-        return {msg: "some phydical error", seating_list: null, error: "error"}
+        return { msg: "backend service is down", seating_list: null, error: (e as Error).message }
     }
 
     

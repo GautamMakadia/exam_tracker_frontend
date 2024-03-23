@@ -3,35 +3,16 @@
 import { useFormState, useFormStatus } from "react-dom"
 import styles from "./style.module.scss"
 import { uploadExcelFile } from "./_action";
-import { getActiveCollection } from "@/lib/data";
-import { useEffect, useState } from "react";
 import RecordsView from "@/components/record_table/record_view";
 
 
 export default function Upload() {
-
-    const [activeCollection, setActiveCollection] = useState<string>("")
-    const [state, uploadAction] = useFormState(uploadExcelFile, {msg: "", seating_list: null, error: ""});
+    const [ state , uploadAction ] = useFormState(uploadExcelFile, {msg: "", seating_list: null, error: ""});
     const { pending } = useFormStatus()
-
-    fetch(`http://localhost:8000/active-collection`)
-    .then(r => r.json())
-    .then((data)=> {
-        const name = data.name 
-        setActiveCollection(name)
-    })
-
-    if (state.seating_list != null) {
-
-    }
 
     return (
         <>
         <div className={styles.upload_container}>
-                <div>
-                    <span className={styles.form_title}>Upload Seating Records</span>
-                    <span> {"[" +"Active: " + activeCollection +"]"}</span>
-                </div>
 
                 <form className={styles.form} action={uploadAction} >
                     <div className={styles.form_group}>
@@ -59,10 +40,14 @@ export default function Upload() {
                     
                 </form>
                 <div className={styles.uploaded_records}>
-
                     {
-                        ( pending ? <span>Uploading Records</span> : (state.error) ? <span>Somthing Went Wrong</span> : ((state.seating_list != null) ?
-                        <RecordsView records={state.seating_list} styles={styles}/> : <span>Uploaded Records Will Be Displayed Here</span> ) )
+                        ( pending ? <span>Uploading Records</span> : (state.error) ? <span className="text-red-600">{state.msg}</span> : ((state.seating_list != null) ?
+                            <RecordsView records={state.seating_list} styles={styles}/> : (
+                            <div className={styles.desc}> 
+                                <span>Uploaded Records Will Be Displayed Here</span> 
+                                <a href="/seating-format.xlsx">download template file here</a>
+                            </div> ) )
+                        )
                     }
                 </div>
         </div>

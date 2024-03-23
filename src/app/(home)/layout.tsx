@@ -17,13 +17,11 @@ type MenuItem =  {
   path: string
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  const menu_items: MenuItem[] = [{title: "Upload", path:'/'} , {title: 'Seating Records', path: 'seating'}]
 
   return (
     <html lang="en">
