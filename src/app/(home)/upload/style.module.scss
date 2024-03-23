@@ -1,5 +1,5 @@
 .upload_container {
-    @apply flex flex-col h-full font-semibold w-full;
+    @apply flex flex-col h-full font-semibold ;
     background-color: var(--color-secondary-container);
     
     .form_title {
@@ -7,7 +7,7 @@
     }
 
     .form {
-        @apply flex flex-row items-center justify-around text-xl font-semibold mb-4 rounded-lg outline outline-2 drop-shadow-md;
+        @apply flex flex-row items-center justify-around mb-4 h-20 text-xl font-semibold rounded-lg outline outline-2 drop-shadow-md;
         outline-color: var(--color-secondary);
         background-color: var(--tertiary-container);
 
@@ -17,6 +17,7 @@
             label {
                 color: var(--color-primary);
             }
+
             select, input {
                 @apply border-none;
                 color: var(--color-secondary);
@@ -40,7 +41,7 @@
                 &:hover {
                     background-color: rgb(48, 40, 163);
                 }
-            }
+            } 
         }
     }
     
@@ -50,8 +51,17 @@
         background-color: var(--color-primary-container);
 
 
+        .desc {
+            @apply flex flex-col items-center;
+
+            a {
+                @apply underline text-base;
+                color: var(--color-secondary);
+            }
+        }
+
         .table_container {
-            @apply rounded-xl w-full  p-2; 
+            @apply rounded-xl w-full p-2; 
             
             color: var(--color-secondary);
 
@@ -70,7 +80,7 @@
     
             .table_content {
                 @apply overflow-y-scroll scroll-smooth rounded-lg;
-                height: calc(100vh - 240px);
+                height: calc(100vh - 210px);
 
                 .row {
                     display: grid;
@@ -82,10 +92,6 @@
                     &.odd {
                         background-color: var(--tertiary-container);
                         color: var(--color-primary);
-                    }
-        
-                    &.even {
-                    
                     }
                 }
             }
