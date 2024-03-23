@@ -2,24 +2,21 @@
     @apply flex flex-col h-full w-full items-center justify-center;
 
     .head {
-        @apply flex flex-row items-center text-xl mb-4 h-20 font-semibold outline outline-2 rounded-lg drop-shadow-md w-full ;
+        @apply  flex flex-row text-lg font-medium outline outline-2 items-center rounded-lg drop-shadow-md w-full mb-3 p-4 h-16;
         outline-color: var(--color-secondary);
         background-color: var(--tertiary-container);
 
         .title {
-            @apply my-5 ms-5;
+            
         }
 
-        .loading {
+        .loading, .error {
+            @apply mx-1;
             color: var(--color-secondary);
         }
 
-        .error {
-           @apply text-red-600;
-        }
-
         .ref_selection {
-            @apply p-2 rounded-md  my-5 ;
+            @apply py-1 rounded-md  mx-2 font-semibold text-lg;
             color: var(--color-secondary);
             background-color: inherit;
 
@@ -32,17 +29,14 @@
     }
 
     .record_container {
-        @apply rounded-xl outline outline-1 flex flex-col items-center justify-center drop-shadow-md w-full p-2 h-screen;
+        @apply text-2xl rounded-xl outline outline-1 flex flex-col items-center justify-center drop-shadow-md w-full p-2 h-full;
         outline-color: var(--color-outline);
         background-color: var(--color-primary-container);
         border-color: var(--color-primary-container);
 
-        span {
-            @apply font-semibold text-xl;
-        }
 
         .table_container {
-            @apply rounded-xl text-2xl w-full h-full;
+            @apply rounded-xl  w-full;
             
             color: var(--color-secondary);
 
@@ -61,7 +55,7 @@
     
             .table_content {
                 @apply overflow-y-scroll scroll-smooth rounded-lg;
-                height: calc(100vh - 200px);
+                height: calc(100vh - 180px);
 
                 .row {
                     display: grid;
@@ -73,6 +67,10 @@
                     &.odd {
                         background-color: var(--tertiary-container);
                         color: var(--color-primary);
+                    }
+        
+                    &.even {
+                    
                     }
                 }
             }
