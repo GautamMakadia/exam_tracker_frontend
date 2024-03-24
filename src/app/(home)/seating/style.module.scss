@@ -7,7 +7,7 @@
         background-color: var(--tertiary-container);
 
         .title {
-            @apply my-5 ms-5;
+            @apply ms-5;
         }
 
         .loading {
@@ -19,7 +19,7 @@
         }
 
         .ref_selection {
-            @apply p-2 rounded-md  my-5 ;
+            @apply p-2 rounded-md ;
             color: var(--color-secondary);
             background-color: inherit;
 
@@ -61,7 +61,7 @@
     
             .table_content {
                 @apply overflow-y-scroll scroll-smooth rounded-lg;
-                height: calc(100vh - 200px);
+                height: calc(100vh - 190px);
 
                 .row {
                     display: grid;

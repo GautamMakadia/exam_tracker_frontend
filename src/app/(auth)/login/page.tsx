@@ -40,7 +40,7 @@ export default function Login() {
                         <input type="password" name="password" id="password" placeholder="password" required/>
                     </div>
                     <LoginButton/>
-                    {!!state.error && <p>{state.message}</p> }
+                    <p className="text-base font-medium mt-2"> {state.message}</p>
                 </form>
             </div>
         </div>

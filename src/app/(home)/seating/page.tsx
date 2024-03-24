@@ -9,6 +9,7 @@ import useSWR from 'swr'
 const fetcher = (url: string) => fetch(url, {
     credentials: "include",
     mode: "cors",
+    cache: "force-cache"
 }).then(r => r.json())
 
 export default function Seating() {
