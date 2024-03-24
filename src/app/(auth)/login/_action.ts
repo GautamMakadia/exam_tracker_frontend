@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { setCookie } from "cookies-next";
 import { cookies } from "next/headers";
-import { FirebaseError } from "firebase/app";
 
 
 export async function authenticate(
@@ -20,6 +19,7 @@ export async function authenticate(
         
         const user = auth.currentUser 
         if (user) {      
+    
             console.log(user.uid)
             setCookie('user', user.uid, {cookies: cookies, maxAge: 60 * 60 * 12})
             return {
@@ -33,10 +33,12 @@ export async function authenticate(
             throw error
         }    
     } catch(error) {
-        if (error instanceof FirebaseError) {
+        console.error(error)
+        if (error instanceof Error) {
+            console.error(error.message)
             return {
                 error: error.name,
-                message: error.code,
+                message: error.message,
                 uid: ""
             }
         }
