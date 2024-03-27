@@ -4,23 +4,52 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-### Installing Dependencies
+## Requirements
+1. python3.12 (pip)
+2. node.js^latest  (npm)
+
+## Installing Dependencies
+
+### For Frontend(Next.js)
+
 ```bash
+# cd into project root directory then /exam-tracker-au
+cd /extam-tracker-au
+
 npm install
 ```
 
-### Setting Enviroment variables
-Need to create two files in root directory env.devlopment, env.production,
-variables which can be visible to client must starts with 'NEXT_PUBLIC_' [see for more.](https://nextjs.org/docs/app/building-your-application/configuring/environment-variables)
-- **devlopement** variables used for devlopemnt purpose.
-- **production** variables used when project is build for public.
+#### For Backend Api(Fastapi)
 
 ```bash
-NEXT_PUBLIC_HTTP_PROTO="http/https"
-# au.examtracker.com or 127.0.0.1:3000
-NEXT_PUBLIC_HTTP_HOST="domain/address:port"
-# au.examtracker.api or 127.0.0.1:8000
-NEXT_PUBLIC_HTTP_API_HOST="domain/address:port" #for backend api
+# cd into exam-tacker-au/api/
+cd exam-tacker-au/api/
+
+pip install -r requirement.txt
+
+# to run fastapi
+python main.py
+```
+
+## ForntEnd Setup
+
+### Api Re-Routing (For Production)
+
+```js
+  // url can be modified before `/:path*` based how public domain is built
+  // i.e. if frontend app public domain is au.exam.edu,then host the backend api at au.exam.edu/api/ by vertual host
+  rewrites: async () => {
+    return [
+      {
+        source: "/api/:path*",
+        destination:
+          process.env.NODE_ENV === "development"
+            ? "http://127.0.0.1:8000/:path*" // chnage the host addr and port accordingly
+            : "https://au.exam.edu/api/:path*", // for production build use public domain of api insted of localhost actual whic is in the repo.
+      },
+    ];
+  },
+
 ```
 
 ### Settign Firebase Auth Api Key.
@@ -30,11 +59,8 @@ Go to /src/lib/firebase.ts and change config object in firebase.ts with your api
 2. Add web app and get the api config of web app from project setting.
 
 
-### Start The Backend Api
-Get the backend [repo.](https://github.com/GautamMakadia/exam-tracker-backend) and follow the steps.
 
-
-###  run the development server
+## Begin Devlopment Server
 ```bash
 npm run dev
 ```
@@ -42,7 +68,7 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
-## Bulid & Start The Project
+## Build The Project
 To buld the the project follow the steps below.
 
 Pre-Requesits:
@@ -53,10 +79,6 @@ Command to build & start:
 ```bash
 npm run build && npm run start
 ```
-
-
-
-
 
 
 ## Learn More
