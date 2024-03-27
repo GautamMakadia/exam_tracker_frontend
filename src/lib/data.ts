@@ -2,7 +2,7 @@
 export const getActiveCollection = async () => {
 
     try {
-        let res = await fetch(`/api/collection/active`, {
+        let res = await fetch(`http://localhost:8000/collection/active`, {
             cache: "no-cache"
         })
         
@@ -16,6 +16,7 @@ export const getActiveCollection = async () => {
 
     } catch (err) {
         if (err instanceof Error) {
+            console.log(err)
             return {
                 name: null,
                 error: {
