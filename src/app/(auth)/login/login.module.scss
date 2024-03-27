@@ -1,17 +1,17 @@
 .root {
-    height: 100vh;
+    @apply h-screen flex flex-col items-center justify-center max-h-screen;
     color: var(--color-on-primary-container);
     background-color: var(--color-surface);
 
     .branding {
-        @apply drop-shadow-xl;
+        @apply drop-shadow-xl m-7 flex flex-col items-center;
         color: var(--color-on-primary-container);
     }
 
     .container {
         width: 450px;
 
-        @apply text-xl font-bold drop-shadow-2xl;
+        @apply text-base font-bold drop-shadow-2xl flex flex-col items-stretch rounded-xl p-5;
         outline: 1px solid rgb(220, 220, 220);
         background-color: var(--color-primary-container);
         
@@ -20,7 +20,7 @@
         }
 
         .form {
-            
+            @apply  flex items-center flex-col m-3;
             .input_group {
                 @apply m-auto w-full flex flex-col my-3;
 

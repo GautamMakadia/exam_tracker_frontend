@@ -4,6 +4,8 @@ import { useFormState, useFormStatus } from "react-dom"
 import styles from "./login.module.scss"
 import { useRouter } from "next/navigation"
 import { authenticate } from "./_action"
+import AtmiyaLogo from "@/assets/image/logo.png"
+import { stat } from "fs"
 
 
 const initialState = {
@@ -22,15 +24,14 @@ export default function Login() {
     }
 
     return (
-        <div className={styles.root + " h-screen flex flex-col items-center justify-center"}>
-            <div className={styles.branding + " m-7"}>
-                <h1 className="text-4xl font-bold">Atmiya University </h1>
+        <div className={styles.root}>
+            <div className={styles.branding}>
+                <img src={AtmiyaLogo.src} alt="atmiya-university" className="w-36 drop-shadow-2xl" />
             </div>
 
-            <div className={styles.container + " flex flex-col items-stretch rounded-xl p-5"}>
-                <h1 className="self-center text-3xl font-bold mt-4 mb-4">Exam Tracker Admin</h1>
-
-                <form action={loginAction} className={styles.form + " flex items-center flex-col m-3"}>
+            <div className={styles.container}>
+                <h1 className="text-3xl font-bold my-3">Atmiya University</h1> 
+                <form action={loginAction} className={styles.form + ""}>
                     <div className={styles.input_group}>
                         <label htmlFor="email">Email:</label>
                         <input type="email" name="email" id="email" placeholder="email@domain.com" required/>
@@ -40,7 +41,7 @@ export default function Login() {
                         <input type="password" name="password" id="password" placeholder="password" required/>
                     </div>
                     <LoginButton/>
-                    {!!state.error && <p>{state.message}</p> }
+                    <p>{state.message}</p> 
                 </form>
             </div>
         </div>

@@ -21,7 +21,7 @@ export async function authenticate(
         if (user) {      
     
             console.log(user.uid)
-            setCookie('user', user.uid, {cookies: cookies, maxAge: 60 * 60 * 12})
+            setCookie('user', user.uid, {cookies: cookies, maxAge: 60 * 60 * 10})
             return {
                 message: "login successfull",
                 uid: user.uid

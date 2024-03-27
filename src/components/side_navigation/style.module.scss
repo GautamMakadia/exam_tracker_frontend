@@ -2,7 +2,11 @@
     @apply flex items-center flex-col;
 
     .nav_head {
-        @apply text-3xl mx-8 my-14 font-bold;
+        @apply flex flex-col items-center text-3xl mx-8 my-14 font-bold;
+
+        .logo {
+            @apply w-36 mb-3;
+        }
     }
 
     .list_container{

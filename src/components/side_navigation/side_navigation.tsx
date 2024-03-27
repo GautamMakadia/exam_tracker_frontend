@@ -3,6 +3,7 @@
 import Link from "next/link"
 import styles from "./style.module.scss"
 import { usePathname, useRouter } from "next/navigation"
+import logo from "@/assets/image/logo.png"
 
 type MenuItem =  {
     id: string
@@ -27,6 +28,7 @@ export default function SideNavigation({className}: SideNavigationProps) {
     return (
         <nav className={`${className} ${styles.navigation_pan}`}>
             <div className={`${styles.nav_head}`}>
+                <img src={logo.src} alt="atmiya-university" className={styles.logo}/>
                 <h1 className={`${styles.nav_title}`}>Atmiya University</h1>
                 <hr/>
             </div>
