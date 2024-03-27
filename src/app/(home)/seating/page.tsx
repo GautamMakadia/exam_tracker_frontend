@@ -3,7 +3,6 @@
 import styles from './style.module.scss'
 import { ChangeEvent, useEffect, useState } from 'react'
 import RecordsView from '@/components/record_table/record_view'
-import { api } from '@/lib/url'
 import useSWR from 'swr'
 
 const fetcher = (url: string) => fetch(url, {
@@ -12,7 +11,7 @@ const fetcher = (url: string) => fetch(url, {
 }).then(r => r.json())
 
 export default function Seating() {
-    const { data, error, isLoading } = useSWR(api("/collections"), fetcher)
+    const { data, error, isLoading } = useSWR(`/api/collections`, fetcher)
     const [option, setOption] = useState<string>("")
     const [records, setRecords] = useState<any>()
 
@@ -20,7 +19,7 @@ export default function Seating() {
     useEffect(() => {
         if (option != "") {
             setRecords(undefined)
-            fetch(api(`/records/${option}`), {
+            fetch(`/api/records/${option}`, {
                 credentials: "include",
                 mode: "cors",
             }

@@ -2,7 +2,7 @@
 export const getActiveCollection = async () => {
 
     try {
-        let res = await fetch(`http://localhost:8000/collection/active`, {
+        let res = await fetch(`/api/collection/active`, {
             cache: "no-cache"
         })
         

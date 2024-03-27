@@ -6,7 +6,7 @@ export async function uploadExcelFile(
 ) {
    
     try {
-        const res = await fetch(`http://localhost:8000/records`, {
+        const res = await fetch(`/api/records`, {
             method: "post",
             body: formData
         })
